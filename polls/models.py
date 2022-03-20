@@ -27,11 +27,10 @@ class Poll(models.Model):
     def get_result_dict(self):
         res = []
         for choice in self.choice_set.all():
-            d = {}
             alert_class = ['primary', 'secondary', 'success',
                            'danger', 'dark', 'warning', 'info']
 
-            d['alert_class'] = secrets.choice(alert_class)
+            d = {'alert_class': secrets.choice(alert_class)}
             d['text'] = choice.choice_text
             d['num_votes'] = choice.get_vote_count
             if not self.get_vote_count:
